@@ -9,6 +9,10 @@ import javax.swing.*;
 
 public class bowser {
 		
+		static String backLink;
+		static String backLink2;
+		
+	
 		public static void main(String[] args) {
 		
 
@@ -70,6 +74,7 @@ public class bowser {
 		
 		Enter1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				backLink = browserPane1.getPage().toString();
 				try {
 					  browserPane1.setPage(Search1.getText());
 					}catch (IOException e1) {
@@ -80,6 +85,7 @@ public class bowser {
 		
 		Enter2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				backLink2 = browserPane2.getPage().toString();
 				try {
 					  browserPane2.setPage(Search2.getText());
 					}catch (IOException e1) {
@@ -87,6 +93,32 @@ public class bowser {
 					}
 			}
 		});
+		
+		
+		Back1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					  browserPane1.setPage(backLink);
+					}catch (IOException e1) {
+						System.out.println("error loading page");
+					}
+				Search1.setText(backLink);
+				backLink = browserPane1.getPage().toString();
+			}
+		});
+		
+		Back2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					  browserPane2.setPage(backLink2);
+					}catch (IOException e1) {
+						System.out.println("error loading page");
+					}
+				Search2.setText(backLink2);
+				backLink2 = browserPane2.getPage().toString();
+			}
+		});
+			
 		
 		
 		try {
